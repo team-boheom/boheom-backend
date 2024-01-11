@@ -1,10 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.2.1"
-    id("io.spring.dependency-management") version "1.1.4"
-    kotlin("jvm") version "1.7.22"
-    kotlin("plugin.spring") version "1.9.21"
+    id("org.springframework.boot") version PluginVersions.SPRING_BOOT_FRAMEWORK_VERSION
+    id("io.spring.dependency-management") version PluginVersions.SPRING_DEPENDENCY_MANAGEMENT_VERSION
+    kotlin("jvm") version PluginVersions.JVM_VERSION
+    kotlin("plugin.spring") version PluginVersions.PLUGIN_SPRING_VERSION
+    kotlin("plugin.jpa") version PluginVersions.PLUGIN_JPA_VERSION
 }
 
 group = "com.example"
@@ -19,9 +20,18 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation(Dependencies.JPA)
+    implementation(Dependencies.SECURITY)
+    implementation(Dependencies.VALIDATION)
+    implementation(Dependencies.WEB)
+    implementation(Dependencies.JACKSON)
+    implementation(Dependencies.REFLECT)
+    implementation(Dependencies.JDK8)
+    implementation(Dependencies.JWT)
+    runtimeOnly(Dependencies.MYSQL)
+    implementation(Dependencies.REDIS)
+    implementation(Dependencies.CLOUD_AWS)
+    annotationProcessor(Dependencies.CONFIGURATION_PROCESSOR)
 }
 
 tasks.withType<KotlinCompile> {
