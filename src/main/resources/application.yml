@@ -35,3 +35,19 @@ jwt:
   refresh_exp: ${JWT_REFRESH_EXP:86400}
   header: ${JWT_HEADER:Authorization}
   prefix: ${JWT_PREFIX:Bearer}
+
+cloud:
+  aws:
+    s3:
+      prefix: ${AWS_S3_PREFIX:/}
+      bucket: ${AWS_S3_BUCKET:boheom/}
+      base-image-url: ${AWS_S3_URL:boheom}
+    region:
+      static: ${AWS_S3_REGION:ap-northeast-2}
+    stack:
+      auto: false
+    credentials:
+      access-key: ${AWS_S3_ACCESS}
+      secret-key: ${AWS_S3_SECRET}
+server:
+  port: 9090
