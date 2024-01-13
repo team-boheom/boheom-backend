@@ -1,6 +1,7 @@
 package com.example.boheom.global.security
 
 import com.example.boheom.global.config.FilterConfig
+import com.example.boheom.global.security.jwt.TokenProvider
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -15,6 +16,7 @@ import org.springframework.security.web.SecurityFilterChain
 @Configuration
 class SecurityConfig(
     private val objectMapper: ObjectMapper,
+    private val tokenProvider: TokenProvider,
 ) {
     @Bean
     @Throws(Exception::class)
@@ -33,7 +35,7 @@ class SecurityConfig(
             .antMatchers("/**").permitAll()
             .anyRequest().permitAll()
 
-            .and().apply(FilterConfig(objectMapper))
+            .and().apply(FilterConfig(objectMapper, tokenProvider))
             .and().build()
     }
 

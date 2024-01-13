@@ -29,6 +29,7 @@ spring:
   servlet:
     multipart:
       max-file-size: 10MB
+
 jwt:
   secret_key: ${JWT_SECRET_KEY}
   access_exp: ${JWT_ACCESS_EXP:7200}

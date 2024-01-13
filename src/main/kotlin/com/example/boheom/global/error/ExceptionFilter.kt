@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse
 class ExceptionFilter(
     private val objectMapper: ObjectMapper
 ) : OncePerRequestFilter() {
-    @Throws
+    @Throws(IOException::class)
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
