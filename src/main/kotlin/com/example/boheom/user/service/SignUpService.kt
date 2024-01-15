@@ -19,18 +19,18 @@ class SignUpService(
 ) {
     @Transactional
     fun execute(request: SignUpRequest) {
-        checkExistUser(request)
+        checkUser(request)
         userRepository.save(User(request.accountId, passwordEncoder.encode(request.password), request.nickname, ""))
     }
 
-    private fun checkExistUser(request: SignUpRequest) {
+    private fun checkUser(request: SignUpRequest) {
         if (userFacade.checkAccountIdExist(request.accountId)) {
             throw AlreadyAccountIdException
         }
         if (userFacade.checkNicknameExist(request.nickname)) {
             throw AlreadyNicknameException
         }
-        if (request.password == request.checkPassword) {
+        if (!request.password.equals(request.checkPassword)) {
             throw UnmatchedPasswordException
         }
     }
