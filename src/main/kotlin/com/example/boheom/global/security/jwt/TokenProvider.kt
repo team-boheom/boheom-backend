@@ -3,9 +3,9 @@ package com.example.boheom.global.security.jwt
 import com.example.boheom.global.exception.TokenExpiredException
 import com.example.boheom.global.exception.TokenInvalidException
 import com.example.boheom.global.security.auth.AuthDetailsService
-import com.example.boheom.user.domain.RefreshToken
-import com.example.boheom.user.domain.repository.RefreshTokenRepository
-import com.example.boheom.user.presentation.dto.response.TokenResponse
+import com.example.boheom.domain.user.domain.RefreshToken
+import com.example.boheom.domain.user.domain.repository.RefreshTokenRepository
+import com.example.boheom.domain.user.presentation.dto.response.TokenResponse
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jwts

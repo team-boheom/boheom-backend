@@ -1,6 +1,6 @@
 package com.example.boheom.global.security.auth
 
-import com.example.boheom.user.domain.User
+import com.example.boheom.domain.user.domain.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
