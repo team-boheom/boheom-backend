@@ -65,10 +65,10 @@ class TokenProvider(
                 .parseClaimsJws(token)
                 .body
         } catch (e: ExpiredJwtException) {
-            throw TokenExpiredException.EXCEPTION
+            throw TokenExpiredException
         } catch (e: Exception) {
             e.printStackTrace()
-            throw TokenInvalidException.EXCEPTION
+            throw TokenInvalidException
         }
     }
 

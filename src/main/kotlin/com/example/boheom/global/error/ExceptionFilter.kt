@@ -27,7 +27,7 @@ class ExceptionFilter(
             e.printStackTrace()
             when (e) {
                 is BoheomException -> writeErrorCode(e, response)
-                else -> writeErrorCode(InternalServerError.EXCEPTION, response)
+                else -> writeErrorCode(InternalServerError, response)
             }
         }
     }

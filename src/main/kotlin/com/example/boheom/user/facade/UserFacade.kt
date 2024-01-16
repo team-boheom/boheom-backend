@@ -25,10 +25,6 @@ class UserFacade(
     }
 
     fun getByAccountId(accountId: String): User {
-        return userRepository.findByAccountId(accountId) ?: throw UserNotFoundException.EXCEPTION
-    }
-
-    fun getUserById(userId: UUID): User {
-        return userRepository.findById(userId).orElseThrow { throw UserNotFoundException.EXCEPTION }
+        return userRepository.findByAccountId(accountId) ?: throw UserNotFoundException
     }
 }
