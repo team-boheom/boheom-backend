@@ -19,7 +19,7 @@ class UserController(
     private val signUpService: SignUpService,
     private val signInService: SignInService,
 ) {
-    @ResponseStatus(value = CREATED)
+    @ResponseStatus(CREATED)
     @PostMapping("/signup")
     fun signup(@RequestBody @Valid request: SignUpRequest) {
         signUpService.execute(request)
