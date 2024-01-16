@@ -3,9 +3,11 @@ package com.example.boheom.feed.presentation
 import com.example.boheom.feed.presentation.dto.request.CreateFeedRequest
 import com.example.boheom.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.boheom.feed.service.CreateFeedService
+import com.example.boheom.feed.service.DeleteFeedService
 import com.example.boheom.feed.service.UpdateFeedService
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.NO_CONTENT
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -21,6 +23,7 @@ import javax.validation.Valid
 class FeedController(
     private val createFeedService: CreateFeedService,
     private val updateFeedService: UpdateFeedService,
+    private val deleteFeedService: DeleteFeedService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -32,5 +35,11 @@ class FeedController(
     @PatchMapping("/{feed-id}")
     fun updateFeed(@PathVariable("feed-id") feedId: UUID, @RequestBody @Valid request: UpdateFeedRequest) {
         updateFeedService.execute(feedId, request)
+    }
+
+    @ResponseStatus(NO_CONTENT)
+    @DeleteMapping("/{feed-id}")
+    fun deleteFeed(@PathVariable("feed-id") feedId: UUID) {
+        deleteFeedService.execute(feedId)
     }
 }
