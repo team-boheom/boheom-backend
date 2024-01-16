@@ -5,7 +5,7 @@ import com.example.boheom.user.presentation.dto.request.SignUpRequest
 import com.example.boheom.user.presentation.dto.response.TokenResponse
 import com.example.boheom.user.service.SignInService
 import com.example.boheom.user.service.SignUpService
-import org.springframework.http.HttpStatus.*
+import org.springframework.http.HttpStatus.CREATED
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

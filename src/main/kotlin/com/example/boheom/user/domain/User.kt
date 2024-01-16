@@ -3,7 +3,6 @@ package com.example.boheom.user.domain
 import com.example.boheom.global.entity.BaseUUIDEntity
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.validation.constraints.NotNull
 
 @Entity(name = "tbl_user")
 class User(
@@ -18,4 +17,4 @@ class User(
 
     @Column(columnDefinition = "VARCHAR(3000)", nullable = false)
     var profile: String,
-): BaseUUIDEntity()
+) : BaseUUIDEntity()

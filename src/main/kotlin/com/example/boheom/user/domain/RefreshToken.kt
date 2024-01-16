@@ -12,6 +12,5 @@ class RefreshToken(
 
     @Indexed
     @field:NotBlank
-    var token: String
-) {
-}
+    var token: String,
+)

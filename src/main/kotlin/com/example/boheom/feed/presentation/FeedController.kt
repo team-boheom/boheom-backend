@@ -2,7 +2,7 @@ package com.example.boheom.feed.presentation
 
 import com.example.boheom.feed.presentation.dto.request.CreateFeedRequest
 import com.example.boheom.feed.service.CreateFeedService
-import org.springframework.http.HttpStatus.*
+import org.springframework.http.HttpStatus.CREATED
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -15,7 +15,7 @@ import javax.validation.Valid
 class FeedController(
     private val createFeedService: CreateFeedService,
 ) {
-    @ResponseStatus(value = CREATED)
+    @ResponseStatus(CREATED)
     @PostMapping
     fun createFeed(@RequestBody @Valid request: CreateFeedRequest) {
         createFeedService.execute(request)
