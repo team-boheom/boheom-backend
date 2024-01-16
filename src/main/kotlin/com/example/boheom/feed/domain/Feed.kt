@@ -38,4 +38,13 @@ class Feed(
     @JoinColumn(name = "user_id", columnDefinition = "BINARY(16)", nullable = false)
     var user = user
         protected set
+
+    fun updateFeed(title: String, content: String, tag: String, startDay: LocalDate, endDay: LocalDate, recruitment: Int) {
+        this.title = title
+        this.content = content
+        this.tag = tag
+        this.startDay = startDay
+        this.endDay = endDay
+        this.recruitment = recruitment
+    }
 }
