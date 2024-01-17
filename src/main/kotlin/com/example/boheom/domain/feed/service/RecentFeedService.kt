@@ -17,19 +17,11 @@ class RecentFeedService(
     @Transactional(readOnly = true)
     fun execute(): FeedListResponse {
         val feeds = feedRepository.findAllByOrderByCreatedAtAsc()
-        val feedElements = feeds.map {
-            val tags = feedTagRepository.findAllByFeed(it)
-            val applyCount = applyRepository.countByFeed(it)
+        val feedElements = feeds.map { feed ->
+            val tags = feedTagRepository.findAllByFeed(feed)
+            val applyCount = applyRepository.countByFeed(feed)
 
-            FeedElement(
-                it.id,
-                it.title,
-                it.content,
-                it.view,
-                tags.map { it.tag },
-                it.recruitment,
-                applyCount
-            )
+            FeedElement(feed.id, feed.title, feed.content, feed.view, tags.map { it.name }, feed.recruitment, applyCount)
         }
 
         return FeedListResponse(feedElements)

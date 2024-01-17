@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne
 @Entity(name = "tbl_feed_tags")
 class FeedTag(
     @Column(columnDefinition = "VARCHAR(10) default ''", nullable = false)
-    var tag: String,
+    var name: String,
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "feed_id", columnDefinition = "BINARY(16)", nullable = false)

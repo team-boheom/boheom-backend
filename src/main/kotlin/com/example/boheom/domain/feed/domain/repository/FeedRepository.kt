@@ -6,4 +6,5 @@ import java.util.UUID
 
 interface FeedRepository : JpaRepository<Feed, UUID> {
     fun findAllByOrderByCreatedAtAsc(): List<Feed>
+    fun findAllByOrderByViewDesc(): List<Feed>
 }

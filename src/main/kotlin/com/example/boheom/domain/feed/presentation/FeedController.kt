@@ -6,6 +6,7 @@ import com.example.boheom.domain.feed.presentation.dto.response.FeedListResponse
 import com.example.boheom.domain.feed.service.CreateFeedService
 import com.example.boheom.domain.feed.service.DeleteFeedService
 import com.example.boheom.domain.feed.service.FeedApplyService
+import com.example.boheom.domain.feed.service.PopularFeedListService
 import com.example.boheom.domain.feed.service.RecentFeedService
 import com.example.boheom.domain.feed.service.UpdateFeedService
 import org.springframework.http.HttpStatus.CREATED
@@ -30,6 +31,7 @@ class FeedController(
     private val deleteFeedService: DeleteFeedService,
     private val feedApplyService: FeedApplyService,
     private val recentFeedService: RecentFeedService,
+    private val popularFeedListService: PopularFeedListService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -58,5 +60,10 @@ class FeedController(
     @GetMapping("/recent")
     fun getRecentFeed(): FeedListResponse {
         return recentFeedService.execute()
+    }
+
+    @GetMapping("/popular")
+    fun getPopularFeed(): FeedListResponse {
+        return popularFeedListService.execute()
     }
 }
