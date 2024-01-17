@@ -1,5 +1,7 @@
 package com.example.boheom.domain.feed.service
 
+import com.example.boheom.domain.feed.domain.FeedTag
+import com.example.boheom.domain.feed.domain.repository.FeedTagRepository
 import com.example.boheom.domain.feed.exception.IncorrectUserException
 import com.example.boheom.domain.feed.facade.FeedFacade
 import com.example.boheom.domain.feed.presentation.dto.request.UpdateFeedRequest
@@ -10,6 +12,7 @@ import java.util.UUID
 
 @Service
 class UpdateFeedService(
+    private val feedTagRepository: FeedTagRepository,
     private val feedFacade: FeedFacade,
     private val userFacade: UserFacade,
 ) {
@@ -20,6 +23,8 @@ class UpdateFeedService(
         if (user != feed.user) {
             throw IncorrectUserException
         }
-        feed.updateFeed(request.title, request.content, request.tag, request.startDay, request.endDay, request.recruitment)
+        feed.updateFeed(request.title, request.content, request.startDay, request.endDay, request.recruitment)
+        feedTagRepository.deleteAllByFeed(feed)
+        request.tag.map { feedTagRepository.save(FeedTag(it, feed)) }
     }
 }

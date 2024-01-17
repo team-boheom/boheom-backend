@@ -17,9 +17,6 @@ class Feed(
     @Column(columnDefinition = "VARCHAR(500)", nullable = false)
     var content: String,
 
-    @Column(columnDefinition = "VARCHAR(15)", nullable = false)
-    var tag: String,
-
     @Column(columnDefinition = "DATE", nullable = false)
     var startDay: LocalDate,
 
@@ -39,10 +36,9 @@ class Feed(
     var user = user
         protected set
 
-    fun updateFeed(title: String, content: String, tag: String, startDay: LocalDate, endDay: LocalDate, recruitment: Int) {
+    fun updateFeed(title: String, content: String, startDay: LocalDate, endDay: LocalDate, recruitment: Int) {
         this.title = title
         this.content = content
-        this.tag = tag
         this.startDay = startDay
         this.endDay = endDay
         this.recruitment = recruitment

@@ -13,7 +13,7 @@ data class UpdateFeedRequest(
     val content: String,
 
     @field:Size(max = 15, message = "최대 15자까지 가능합니다.")
-    val tag: String,
+    val tag: List<String>,
 
     val recruitment: Int,
 

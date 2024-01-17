@@ -14,9 +14,8 @@ data class CreateFeedRequest(
     @field:Size(max = 500, message = "최대 500자까지 가능합니다.")
     val content: String,
 
-    @field:NotBlank(message = "null, 공백, 띄어쓰기를 허용하지 않습니다.")
     @field:Size(max = 15, message = "최대 15자까지 가능합니다.")
-    val tag: String,
+    val tag: List<String>,
 
     @field:NotNull(message = "null을 허용하지 않습니다.")
     val recruitment: Int,

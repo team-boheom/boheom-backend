@@ -1,6 +1,7 @@
 package com.example.boheom.domain.feed.service
 
 import com.example.boheom.domain.feed.domain.repository.FeedRepository
+import com.example.boheom.domain.feed.domain.repository.FeedTagRepository
 import com.example.boheom.domain.feed.exception.IncorrectUserException
 import com.example.boheom.domain.feed.facade.FeedFacade
 import com.example.boheom.domain.user.facade.UserFacade
@@ -12,7 +13,8 @@ import java.util.UUID
 class DeleteFeedService(
     private val feedFacade: FeedFacade,
     private val userFacade: UserFacade,
-    private val feedRepository: FeedRepository
+    private val feedRepository: FeedRepository,
+    private val feedTagRepository: FeedTagRepository,
 ) {
     @Transactional
     fun execute(feedId: UUID) {
@@ -23,6 +25,7 @@ class DeleteFeedService(
             throw IncorrectUserException
         }
 
+        feedTagRepository.deleteAllByFeed(feed)
         feedRepository.delete(feed)
     }
 }
