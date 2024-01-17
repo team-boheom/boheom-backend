@@ -1,10 +1,7 @@
 package com.example.boheom.domain.feed.service
 
-import com.example.boheom.domain.feed.domain.repository.ApplyRepository
 import com.example.boheom.domain.feed.domain.repository.FeedRepository
-import com.example.boheom.domain.feed.domain.repository.FeedTagRepository
 import com.example.boheom.domain.feed.facade.FeedFacade
-import com.example.boheom.domain.feed.presentation.dto.response.FeedElement
 import com.example.boheom.domain.feed.presentation.dto.response.FeedListResponse
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
