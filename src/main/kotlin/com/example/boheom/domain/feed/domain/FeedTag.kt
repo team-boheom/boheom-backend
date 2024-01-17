@@ -13,10 +13,6 @@ class FeedTag(
     var tag: String,
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(columnDefinition = "BINARY(16)", name = "feed_id", nullable = false)
+    @JoinColumn(name = "feed_id", columnDefinition = "BINARY(16)", nullable = false)
     val feed: Feed
-) : BaseUUIDEntity() {
-    fun updateFeedTag(tag: String) {
-        this.tag = tag
-    }
-}
+) : BaseUUIDEntity()
