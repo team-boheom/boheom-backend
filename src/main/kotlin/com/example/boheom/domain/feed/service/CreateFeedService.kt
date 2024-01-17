@@ -8,6 +8,7 @@ import com.example.boheom.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.boheom.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 
 @Service
 class CreateFeedService(
@@ -26,6 +27,7 @@ class CreateFeedService(
                 request.endDay,
                 request.recruitment,
                 0,
+                LocalDateTime.now(),
                 user
             )
         )
