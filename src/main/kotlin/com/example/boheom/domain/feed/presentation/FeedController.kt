@@ -2,13 +2,16 @@ package com.example.boheom.domain.feed.presentation
 
 import com.example.boheom.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.boheom.domain.feed.presentation.dto.request.UpdateFeedRequest
+import com.example.boheom.domain.feed.presentation.dto.response.FeedListResponse
 import com.example.boheom.domain.feed.service.CreateFeedService
 import com.example.boheom.domain.feed.service.DeleteFeedService
 import com.example.boheom.domain.feed.service.FeedApplyService
+import com.example.boheom.domain.feed.service.RecentFeedService
 import com.example.boheom.domain.feed.service.UpdateFeedService
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.NO_CONTENT
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -26,6 +29,7 @@ class FeedController(
     private val updateFeedService: UpdateFeedService,
     private val deleteFeedService: DeleteFeedService,
     private val feedApplyService: FeedApplyService,
+    private val recentFeedService: RecentFeedService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -49,5 +53,10 @@ class FeedController(
     @PostMapping("/{feed-id}")
     fun feedApply(@PathVariable("feed-id") feedId: UUID) {
         feedApplyService.execute(feedId)
+    }
+
+    @GetMapping("/recent")
+    fun getRecentFeed(): FeedListResponse {
+        return recentFeedService.execute()
     }
 }
