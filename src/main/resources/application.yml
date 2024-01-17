@@ -49,7 +49,7 @@ cloud:
       auto: false
     credentials:
       access-key: ${AWS_S3_ACCESS}
-      secret-key: ${AWS_S3_SECRET}\
+      secret-key: ${AWS_S3_SECRET}
 
 server:
   port: 9090
