@@ -3,6 +3,7 @@ package com.example.boheom.domain.feed.presentation
 import com.example.boheom.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.boheom.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.boheom.domain.feed.presentation.dto.response.FeedListResponse
+import com.example.boheom.domain.feed.service.CategoryFeedService
 import com.example.boheom.domain.feed.service.CreateFeedService
 import com.example.boheom.domain.feed.service.DeleteFeedService
 import com.example.boheom.domain.feed.service.FeedApplyService
@@ -32,6 +33,7 @@ class FeedController(
     private val feedApplyService: FeedApplyService,
     private val recentFeedService: RecentFeedService,
     private val popularFeedListService: PopularFeedListService,
+    private val categoryFeedService: CategoryFeedService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -65,5 +67,10 @@ class FeedController(
     @GetMapping("/popular")
     fun getPopularFeed(): FeedListResponse {
         return popularFeedListService.execute()
+    }
+
+    @GetMapping("/{category}")
+    fun getCategoryFeed(@PathVariable("category") category: String): FeedListResponse {
+        return categoryFeedService.execute(category)
     }
 }
