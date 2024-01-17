@@ -2,11 +2,13 @@ package com.example.boheom.domain.feed.presentation
 
 import com.example.boheom.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.boheom.domain.feed.presentation.dto.request.UpdateFeedRequest
+import com.example.boheom.domain.feed.presentation.dto.response.FeedDetailsResponse
 import com.example.boheom.domain.feed.presentation.dto.response.FeedListResponse
 import com.example.boheom.domain.feed.service.CategoryFeedService
 import com.example.boheom.domain.feed.service.CreateFeedService
 import com.example.boheom.domain.feed.service.DeleteFeedService
 import com.example.boheom.domain.feed.service.FeedApplyService
+import com.example.boheom.domain.feed.service.FeedDetailsService
 import com.example.boheom.domain.feed.service.PopularFeedListService
 import com.example.boheom.domain.feed.service.RecentFeedService
 import com.example.boheom.domain.feed.service.UpdateFeedService
@@ -34,6 +36,7 @@ class FeedController(
     private val recentFeedService: RecentFeedService,
     private val popularFeedListService: PopularFeedListService,
     private val categoryFeedService: CategoryFeedService,
+    private val feedDetailsService: FeedDetailsService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -72,5 +75,10 @@ class FeedController(
     @GetMapping("/{category}")
     fun getCategoryFeed(@PathVariable("category") category: String): FeedListResponse {
         return categoryFeedService.execute(category)
+    }
+
+    @GetMapping("/details/{feed-id}")
+    fun getFeedDetails(@PathVariable("feed-id") feedId: UUID): FeedDetailsResponse {
+        return feedDetailsService.execute(feedId)
     }
 }
