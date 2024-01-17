@@ -4,6 +4,7 @@ import com.example.boheom.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.boheom.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.boheom.domain.feed.service.CreateFeedService
 import com.example.boheom.domain.feed.service.DeleteFeedService
+import com.example.boheom.domain.feed.service.FeedApplyService
 import com.example.boheom.domain.feed.service.UpdateFeedService
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.NO_CONTENT
@@ -24,6 +25,7 @@ class FeedController(
     private val createFeedService: CreateFeedService,
     private val updateFeedService: UpdateFeedService,
     private val deleteFeedService: DeleteFeedService,
+    private val feedApplyService: FeedApplyService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -41,5 +43,11 @@ class FeedController(
     @DeleteMapping("/{feed-id}")
     fun deleteFeed(@PathVariable("feed-id") feedId: UUID) {
         deleteFeedService.execute(feedId)
+    }
+
+    @ResponseStatus(CREATED)
+    @PostMapping("/{feed-id}")
+    fun feedApply(@PathVariable("feed-id") feedId: UUID) {
+        feedApplyService.execute(feedId)
     }
 }
