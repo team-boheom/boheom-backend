@@ -2,6 +2,7 @@ package com.example.boheom.domain.feed.service
 
 import com.example.boheom.domain.feed.domain.Apply
 import com.example.boheom.domain.feed.domain.repository.ApplyRepository
+import com.example.boheom.domain.feed.exception.AlreadyApplyException
 import com.example.boheom.domain.feed.exception.NotAllowSelfApplicationException
 import com.example.boheom.domain.feed.facade.FeedFacade
 import com.example.boheom.domain.user.facade.UserFacade
@@ -21,6 +22,9 @@ class FeedApplyService(
         val feed = feedFacade.getByFeedId(feedId)
         if (user.equals(feed.user)) {
             throw NotAllowSelfApplicationException
+        }
+        if (applyRepository.existsByUserAndFeed(user, feed)) {
+            throw AlreadyApplyException
         }
         applyRepository.save(Apply(user, feed))
     }

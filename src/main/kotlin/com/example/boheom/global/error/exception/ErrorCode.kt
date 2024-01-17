@@ -17,6 +17,7 @@ enum class ErrorCode(
 
     ALREADY_ACCOUNT_ID(409, "Already Account Id"),
     ALREADY_NICKNAME(409, "Already Nickname"),
+    ALREADY_APPLY(409, "Already Apply"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 }
