@@ -17,4 +17,8 @@ class User(
 
     @Column(columnDefinition = "VARCHAR(3000)", nullable = false)
     var profile: String,
-) : BaseUUIDEntity()
+) : BaseUUIDEntity() {
+    fun updateProfile(profile: String) {
+        this.profile = profile
+    }
+}
