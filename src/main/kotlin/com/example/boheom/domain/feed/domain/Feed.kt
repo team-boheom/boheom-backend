@@ -46,4 +46,7 @@ class Feed(
         this.endDay = endDay
         this.recruitment = recruitment
     }
+    fun plusView() {
+        this.view += 1
+    }
 }

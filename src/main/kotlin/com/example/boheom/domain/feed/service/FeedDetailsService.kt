@@ -20,6 +20,7 @@ class FeedDetailsService(
     fun execute(feedId: UUID): FeedDetailsResponse {
         val feed = feedFacade.getByFeedId(feedId)
         val tags = feedTagRepository.findAllByFeed(feed).map { it.name }
+        feed.plusView()
         return FeedDetailsResponse(feed.id, feed.title, feed.content, feed.user.nickname, feed.createdAt, tags, getIsMine(feed))
     }
 
