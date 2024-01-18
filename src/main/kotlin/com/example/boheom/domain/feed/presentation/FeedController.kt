@@ -4,14 +4,18 @@ import com.example.boheom.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.boheom.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.boheom.domain.feed.presentation.dto.response.FeedDetailsResponse
 import com.example.boheom.domain.feed.presentation.dto.response.FeedListResponse
-import com.example.boheom.domain.feed.service.QueryCategoryFeedService
+import com.example.boheom.domain.feed.presentation.dto.response.PageFeedListResponse
 import com.example.boheom.domain.feed.service.CreateFeedService
 import com.example.boheom.domain.feed.service.DeleteFeedService
 import com.example.boheom.domain.feed.service.FeedApplyService
+import com.example.boheom.domain.feed.service.QueryCategoryFeedService
 import com.example.boheom.domain.feed.service.QueryFeedDetailsService
 import com.example.boheom.domain.feed.service.QueryPopularFeedListService
 import com.example.boheom.domain.feed.service.QueryRecentFeedService
+import com.example.boheom.domain.feed.service.SearchFeedService
 import com.example.boheom.domain.feed.service.UpdateFeedService
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.NO_CONTENT
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -37,6 +41,7 @@ class FeedController(
     private val queryPopularFeedListService: QueryPopularFeedListService,
     private val queryCategoryFeedService: QueryCategoryFeedService,
     private val queryFeedDetailsService: QueryFeedDetailsService,
+    private val searchFeedService: SearchFeedService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -80,5 +85,10 @@ class FeedController(
     @GetMapping("/details/{feed-id}")
     fun getFeedDetails(@PathVariable("feed-id") feedId: UUID): FeedDetailsResponse {
         return queryFeedDetailsService.execute(feedId)
+    }
+
+    @GetMapping("/search/{keyword}")
+    fun searchFeed(@PathVariable("keyword") keyword: String,@PageableDefault(size = 12) pageable: Pageable): PageFeedListResponse {
+        return searchFeedService.execute(keyword, pageable)
     }
 }
