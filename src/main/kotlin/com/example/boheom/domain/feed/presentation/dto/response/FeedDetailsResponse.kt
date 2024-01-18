@@ -10,5 +10,8 @@ data class FeedDetailsResponse(
     val username: String,
     val createdAt: LocalDateTime,
     val tags: List<String>,
+    val view: Int,
+    val recruitment: Int,
+    val applyCount: Int,
     val isMine: Boolean
 )

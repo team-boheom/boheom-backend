@@ -1,6 +1,7 @@
 package com.example.boheom.domain.feed.service
 
 import com.example.boheom.domain.feed.domain.Feed
+import com.example.boheom.domain.feed.domain.repository.ApplyRepository
 import com.example.boheom.domain.feed.domain.repository.FeedTagRepository
 import com.example.boheom.domain.feed.facade.FeedFacade
 import com.example.boheom.domain.feed.presentation.dto.response.FeedDetailsResponse
@@ -13,14 +14,27 @@ import java.util.UUID
 class QueryFeedDetailsService(
     val userFacade: UserFacade,
     val feedFacade: FeedFacade,
-    val feedTagRepository: FeedTagRepository
+    val feedTagRepository: FeedTagRepository,
+    val applyRepository: ApplyRepository,
 ) {
     @Transactional
     fun execute(feedId: UUID): FeedDetailsResponse {
         val feed = feedFacade.getByFeedId(feedId)
         val tags = feedTagRepository.findAllByFeed(feed).map { it.name }
+        val applyCount = applyRepository.countByFeed(feed)
         feed.plusView()
-        return FeedDetailsResponse(feed.id, feed.title, feed.content, feed.user.nickname, feed.createdAt, tags, getIsMine(feed))
+        return FeedDetailsResponse(
+            feed.id,
+            feed.title,
+            feed.content,
+            feed.user.nickname,
+            feed.createdAt,
+            tags,
+            feed.view,
+            feed.recruitment,
+            applyCount,
+            getIsMine(feed)
+        )
     }
 
     fun getIsMine(feed: Feed): Boolean {
