@@ -8,6 +8,7 @@ import com.example.boheom.domain.feed.presentation.dto.response.PageFeedListResp
 import com.example.boheom.domain.feed.service.CreateFeedService
 import com.example.boheom.domain.feed.service.DeleteFeedService
 import com.example.boheom.domain.feed.service.FeedApplyService
+import com.example.boheom.domain.feed.service.QueryApplyFeedService
 import com.example.boheom.domain.feed.service.QueryCategoryFeedService
 import com.example.boheom.domain.feed.service.QueryFeedDetailsService
 import com.example.boheom.domain.feed.service.QueryPopularFeedListService
@@ -28,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
+import javax.management.Query
 import javax.validation.Valid
 
 @RequestMapping("/feeds")
@@ -42,6 +44,7 @@ class FeedController(
     private val queryCategoryFeedService: QueryCategoryFeedService,
     private val queryFeedDetailsService: QueryFeedDetailsService,
     private val searchFeedService: SearchFeedService,
+    private val queryApplyFeedService: QueryApplyFeedService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -90,5 +93,10 @@ class FeedController(
     @GetMapping("/search/{keyword}")
     fun searchFeed(@PathVariable("keyword") keyword: String,@PageableDefault(size = 12) pageable: Pageable): PageFeedListResponse {
         return searchFeedService.execute(keyword, pageable)
+    }
+
+    @GetMapping("/applied")
+    fun getApplyFeed(): FeedListResponse {
+        return queryApplyFeedService.execute()
     }
 }

@@ -9,4 +9,5 @@ import java.util.UUID
 interface ApplyRepository : JpaRepository<Apply, UUID> {
     fun existsByUserAndFeed(user: User, feed: Feed): Boolean
     fun countByFeed(feed: Feed): Int
+    fun findByUser(user: User): List<Apply>
 }
