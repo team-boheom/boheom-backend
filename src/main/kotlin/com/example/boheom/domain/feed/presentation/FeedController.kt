@@ -15,6 +15,7 @@ import com.example.boheom.domain.feed.service.QueryMyFeedService
 import com.example.boheom.domain.feed.service.QueryPopularFeedListService
 import com.example.boheom.domain.feed.service.QueryRecentFeedService
 import com.example.boheom.domain.feed.service.SearchFeedService
+import com.example.boheom.domain.feed.service.CancelApplyService
 import com.example.boheom.domain.feed.service.UpdateFeedService
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
@@ -30,7 +31,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
-import javax.management.Query
 import javax.validation.Valid
 
 @RequestMapping("/feeds")
@@ -40,6 +40,7 @@ class FeedController(
     private val updateFeedService: UpdateFeedService,
     private val deleteFeedService: DeleteFeedService,
     private val feedApplyService: FeedApplyService,
+    private val cancelApplyService: CancelApplyService,
     private val queryRecentFeedService: QueryRecentFeedService,
     private val queryPopularFeedListService: QueryPopularFeedListService,
     private val queryCategoryFeedService: QueryCategoryFeedService,
@@ -70,6 +71,12 @@ class FeedController(
     @PostMapping("/{feed-id}")
     fun feedApply(@PathVariable("feed-id") feedId: UUID) {
         feedApplyService.execute(feedId)
+    }
+
+    @ResponseStatus(NO_CONTENT)
+    @DeleteMapping("/cancel/{feed-id}")
+    fun cancelApply(@PathVariable("feed-id") feedId: UUID) {
+        cancelApplyService.execute(feedId)
     }
 
     @GetMapping("/recent")
