@@ -11,6 +11,7 @@ import com.example.boheom.domain.feed.service.FeedApplyService
 import com.example.boheom.domain.feed.service.QueryApplyFeedService
 import com.example.boheom.domain.feed.service.QueryCategoryFeedService
 import com.example.boheom.domain.feed.service.QueryFeedDetailsService
+import com.example.boheom.domain.feed.service.QueryMyFeedService
 import com.example.boheom.domain.feed.service.QueryPopularFeedListService
 import com.example.boheom.domain.feed.service.QueryRecentFeedService
 import com.example.boheom.domain.feed.service.SearchFeedService
@@ -45,6 +46,7 @@ class FeedController(
     private val queryFeedDetailsService: QueryFeedDetailsService,
     private val searchFeedService: SearchFeedService,
     private val queryApplyFeedService: QueryApplyFeedService,
+    private val queryMyFeedService: QueryMyFeedService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -98,5 +100,10 @@ class FeedController(
     @GetMapping("/applied")
     fun getApplyFeed(): FeedListResponse {
         return queryApplyFeedService.execute()
+    }
+
+    @GetMapping("/mine")
+    fun getMyFeed(): FeedListResponse {
+        return queryMyFeedService.execute()
     }
 }
