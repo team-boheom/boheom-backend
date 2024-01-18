@@ -15,6 +15,6 @@ class SearchFeedService(
     @Transactional(readOnly = true)
     fun execute(keyword: String, pageable: Pageable): PageFeedListResponse {
         val feeds = feedRepository.findAllByTitleContainingOrderByCreatedAtAsc(keyword, pageable)
-        return PageFeedListResponse(feeds.totalPages, feedFacade.getFeedList(feeds.content))
+        return PageFeedListResponse(feeds.totalPages, feeds.totalPages.equals(pageable.pageNumber+1), feedFacade.getFeedList(feeds.content))
     }
 }
