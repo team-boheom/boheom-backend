@@ -14,6 +14,6 @@ class QueryRecentFeedService(
     @Transactional(readOnly = true)
     fun execute(): FeedListResponse {
         val feeds = feedRepository.findAllByOrderByCreatedAtAsc()
-        return feedFacade.getFeedList(feeds)
+        return FeedListResponse(feedFacade.getFeedList(feeds))
     }
 }

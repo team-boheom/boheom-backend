@@ -14,6 +14,6 @@ class QueryCategoryFeedService(
     @Transactional(readOnly = true)
     fun execute(keyword: String): FeedListResponse {
         val feedTags = feedTagRepository.findAllByNameContaining(keyword)
-        return feedFacade.getFeedList(feedTags.map { it.feed })
+        return FeedListResponse(feedFacade.getFeedList(feedTags.map { it.feed }))
     }
 }

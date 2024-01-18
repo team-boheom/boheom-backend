@@ -20,13 +20,12 @@ class FeedFacade(
         return feedRepository.findById(feedId).orElseThrow { FeedNotFoundException }
     }
 
-    fun getFeedList(feeds: List<Feed>): FeedListResponse {
-        val feedElements = feeds.map { feed ->
+    fun getFeedList(feeds: List<Feed>): List<FeedElement> {
+        return feeds.map { feed ->
             val tags = feedTagRepository.findAllByFeed(feed)
             val applyCount = applyRepository.countByFeed(feed)
 
             FeedElement(feed.id, feed.title, feed.content, feed.view, tags.map { it.name }, feed.recruitment, applyCount)
         }
-        return FeedListResponse(feedElements)
     }
 }

@@ -14,6 +14,6 @@ class QueryPopularFeedListService(
     @Transactional(readOnly = true)
     fun execute(): FeedListResponse {
         val feeds = feedRepository.findAllByOrderByViewDesc()
-        return feedFacade.getFeedList(feeds)
+        return FeedListResponse(feedFacade.getFeedList(feeds))
     }
 }
