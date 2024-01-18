@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class RecentFeedService(
+class QueryRecentFeedService(
     private val feedRepository: FeedRepository,
     private val feedFacade: FeedFacade,
 ) {

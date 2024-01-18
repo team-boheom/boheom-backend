@@ -4,13 +4,13 @@ import com.example.boheom.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.boheom.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.boheom.domain.feed.presentation.dto.response.FeedDetailsResponse
 import com.example.boheom.domain.feed.presentation.dto.response.FeedListResponse
-import com.example.boheom.domain.feed.service.CategoryFeedService
+import com.example.boheom.domain.feed.service.QueryCategoryFeedService
 import com.example.boheom.domain.feed.service.CreateFeedService
 import com.example.boheom.domain.feed.service.DeleteFeedService
 import com.example.boheom.domain.feed.service.FeedApplyService
-import com.example.boheom.domain.feed.service.FeedDetailsService
-import com.example.boheom.domain.feed.service.PopularFeedListService
-import com.example.boheom.domain.feed.service.RecentFeedService
+import com.example.boheom.domain.feed.service.QueryFeedDetailsService
+import com.example.boheom.domain.feed.service.QueryPopularFeedListService
+import com.example.boheom.domain.feed.service.QueryRecentFeedService
 import com.example.boheom.domain.feed.service.UpdateFeedService
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.NO_CONTENT
@@ -33,10 +33,10 @@ class FeedController(
     private val updateFeedService: UpdateFeedService,
     private val deleteFeedService: DeleteFeedService,
     private val feedApplyService: FeedApplyService,
-    private val recentFeedService: RecentFeedService,
-    private val popularFeedListService: PopularFeedListService,
-    private val categoryFeedService: CategoryFeedService,
-    private val feedDetailsService: FeedDetailsService,
+    private val queryRecentFeedService: QueryRecentFeedService,
+    private val queryPopularFeedListService: QueryPopularFeedListService,
+    private val queryCategoryFeedService: QueryCategoryFeedService,
+    private val queryFeedDetailsService: QueryFeedDetailsService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -64,21 +64,21 @@ class FeedController(
 
     @GetMapping("/recent")
     fun getRecentFeed(): FeedListResponse {
-        return recentFeedService.execute()
+        return queryRecentFeedService.execute()
     }
 
     @GetMapping("/popular")
     fun getPopularFeed(): FeedListResponse {
-        return popularFeedListService.execute()
+        return queryPopularFeedListService.execute()
     }
 
     @GetMapping("/{category}")
     fun getCategoryFeed(@PathVariable("category") category: String): FeedListResponse {
-        return categoryFeedService.execute(category)
+        return queryCategoryFeedService.execute(category)
     }
 
     @GetMapping("/details/{feed-id}")
     fun getFeedDetails(@PathVariable("feed-id") feedId: UUID): FeedDetailsResponse {
-        return feedDetailsService.execute(feedId)
+        return queryFeedDetailsService.execute(feedId)
     }
 }

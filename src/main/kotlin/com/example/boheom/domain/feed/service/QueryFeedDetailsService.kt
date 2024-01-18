@@ -1,7 +1,6 @@
 package com.example.boheom.domain.feed.service
 
 import com.example.boheom.domain.feed.domain.Feed
-import com.example.boheom.domain.feed.domain.repository.FeedRepository
 import com.example.boheom.domain.feed.domain.repository.FeedTagRepository
 import com.example.boheom.domain.feed.facade.FeedFacade
 import com.example.boheom.domain.feed.presentation.dto.response.FeedDetailsResponse
@@ -11,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 @Service
-class FeedDetailsService(
+class QueryFeedDetailsService(
     val userFacade: UserFacade,
     val feedFacade: FeedFacade,
     val feedTagRepository: FeedTagRepository
