@@ -14,7 +14,7 @@ data class CreateFeedRequest(
     @field:Size(max = 500, message = "최대 500자까지 가능합니다.")
     val content: String,
 
-    @field:Size(max = 15, message = "최대 15자까지 가능합니다.")
+    @field:Size(max = 10, message = "최대 15개까지 가능합니다.")
     val tag: List<String>,
 
     @field:NotNull(message = "null을 허용하지 않습니다.")
