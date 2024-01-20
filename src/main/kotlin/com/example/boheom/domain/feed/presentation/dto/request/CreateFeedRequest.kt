@@ -7,14 +7,14 @@ import javax.validation.constraints.Size
 
 data class CreateFeedRequest(
     @field:NotBlank(message = "null, 공백, 띄어쓰기를 허용하지 않습니다.")
-    @field:Size(max = 50, message = "최대 50자까지 가능합니다.")
+    @field:Size(max = 50, message = "50자까지 가능합니다.")
     val title: String,
 
     @field:NotBlank(message = "null, 공백, 띄어쓰기를 허용하지 않습니다.")
-    @field:Size(max = 500, message = "최대 500자까지 가능합니다.")
+    @field:Size(max = 500, message = "500자까지 가능합니다.")
     val content: String,
 
-    @field:Size(max = 10, message = "최대 15개까지 가능합니다.")
+    @field:Size(max = 10, message = "15개까지 가능합니다.")
     val tag: List<String>,
 
     @field:NotNull(message = "null을 허용하지 않습니다.")
