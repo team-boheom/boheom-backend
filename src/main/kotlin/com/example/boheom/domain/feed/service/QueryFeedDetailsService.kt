@@ -28,6 +28,8 @@ class QueryFeedDetailsService(
             feed.title,
             feed.content,
             feed.user.nickname,
+            feed.startDay,
+            feed.endDay,
             feed.createdAt,
             tags,
             feed.view,
