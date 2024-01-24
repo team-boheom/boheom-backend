@@ -5,6 +5,7 @@ import com.example.boheom.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.boheom.domain.feed.presentation.dto.response.FeedDetailsResponse
 import com.example.boheom.domain.feed.presentation.dto.response.FeedListResponse
 import com.example.boheom.domain.feed.presentation.dto.response.PageFeedListResponse
+import com.example.boheom.domain.feed.presentation.dto.response.QueryApplyUserListResponse
 import com.example.boheom.domain.feed.service.CreateFeedService
 import com.example.boheom.domain.feed.service.DeleteFeedService
 import com.example.boheom.domain.feed.service.FeedApplyService
@@ -16,6 +17,7 @@ import com.example.boheom.domain.feed.service.QueryPopularFeedListService
 import com.example.boheom.domain.feed.service.QueryRecentFeedService
 import com.example.boheom.domain.feed.service.SearchFeedService
 import com.example.boheom.domain.feed.service.CancelApplyService
+import com.example.boheom.domain.feed.service.QueryApplyUserListService
 import com.example.boheom.domain.feed.service.UpdateFeedService
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
@@ -48,6 +50,7 @@ class FeedController(
     private val searchFeedService: SearchFeedService,
     private val queryApplyFeedService: QueryApplyFeedService,
     private val queryMyFeedService: QueryMyFeedService,
+    private val queryApplyUserListService: QueryApplyUserListService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -112,5 +115,10 @@ class FeedController(
     @GetMapping("/mine")
     fun getMyFeed(): FeedListResponse {
         return queryMyFeedService.execute()
+    }
+
+    @GetMapping("/apply-user/{feed-id}")
+    fun getAppliedUserList(@PathVariable("feed-id") feedId: UUID): QueryApplyUserListResponse {
+        return queryApplyUserListService.execute(feedId)
     }
 }
