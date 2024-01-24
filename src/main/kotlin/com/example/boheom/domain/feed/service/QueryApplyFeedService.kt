@@ -17,6 +17,6 @@ class QueryApplyFeedService(
     fun execute(): FeedListResponse {
         val user = userFacade.getCurrentUser()
         val feeds = applyRepository.findByUser(user).map { it.feed }
-        return FeedListResponse(feedFacade.getFeedList(feeds))
+        return FeedListResponse(feedFacade.getFeedList(feeds, user))
     }
 }

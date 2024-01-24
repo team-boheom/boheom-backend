@@ -17,6 +17,6 @@ class QueryMyFeedService(
     fun execute(): FeedListResponse {
         val user = userFacade.getCurrentUser()
         val feeds = feedRepository.findAllByUserOrderByCreatedAtAsc(user)
-        return FeedListResponse(feedFacade.getFeedList(feeds))
+        return FeedListResponse(feedFacade.getFeedList(feeds, user))
     }
 }

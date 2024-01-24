@@ -9,5 +9,6 @@ data class FeedElement(
     val view: Int,
     val tags: List<String>,
     val recruitment: Int,
-    val applyCount: Int
+    val applyCount: Int,
+    val isApplied: Boolean,
 )
