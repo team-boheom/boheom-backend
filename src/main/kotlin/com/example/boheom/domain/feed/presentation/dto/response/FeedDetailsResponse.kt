@@ -16,5 +16,6 @@ data class FeedDetailsResponse(
     val view: Int,
     val recruitment: Int,
     val applyCount: Int,
-    val isMine: Boolean
+    val isApplied: Boolean,
+    val isMine: Boolean,
 )
