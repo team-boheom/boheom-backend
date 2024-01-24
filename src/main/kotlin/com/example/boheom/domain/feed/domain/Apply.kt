@@ -16,4 +16,4 @@ class Apply(
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "feed_id", columnDefinition = "BINARY(16)", nullable = false)
     val feed: Feed
-):BaseUUIDEntity()
+) : BaseUUIDEntity()
