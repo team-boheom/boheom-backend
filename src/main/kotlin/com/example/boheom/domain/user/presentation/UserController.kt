@@ -4,7 +4,7 @@ import com.example.boheom.domain.user.presentation.dto.request.SignInRequest
 import com.example.boheom.domain.user.presentation.dto.request.SignUpRequest
 import com.example.boheom.domain.user.presentation.dto.response.TokenResponse
 import com.example.boheom.domain.user.presentation.dto.response.UploadProfileResponse
-import com.example.boheom.domain.user.presentation.dto.response.UserInfoResponse
+import com.example.boheom.domain.user.presentation.dto.response.UserElement
 import com.example.boheom.domain.user.service.SignInService
 import com.example.boheom.domain.user.service.SignUpService
 import com.example.boheom.domain.user.service.UploadProfileService
@@ -45,7 +45,7 @@ class UserController(
     }
 
     @GetMapping
-    fun getUserInfo(): UserInfoResponse {
+    fun getUserInfo(): UserElement {
         return userInfoService.execute()
     }
 }
