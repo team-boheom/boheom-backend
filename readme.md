@@ -1,4 +1,4 @@
-![Mockup](https://blog.kakaocdn.net/dn/dyIpQw/btsDRbvNv46/Lk8frR4GAO2dXPbxf7YmjK/img.png)
+![img.png](Mockup.png)
 
 # [ 나만의 게임을 찾아서 🎮 ]
 ### 함께 게임할 사람을 모집합니다!
@@ -14,6 +14,6 @@
 
 
 # Entity-Relationship Diagram
-![DB ERD](https://blog.kakaocdn.net/dn/Q7XOR/btsDQYDmXKI/ByKEKrJJND0VzqKcnMswD1/img.png)
+![img_1.png](ERD.png)
 
 
