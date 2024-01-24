@@ -4,7 +4,6 @@ enum class ErrorCode(
     val status: Int,
     val message: String,
 ) {
-    UNMATCHED_PASSWORD(400, "Unmatched Password"),
     INCORRECT_PASSWORD(400, "Incorrect Password"),
     INCORRECT_USER(400, "Incorrect User"),
     NOT_ALLOW_SELF_APPLICATION(400, "Not Allow Self Application"),
