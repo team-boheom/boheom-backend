@@ -18,6 +18,6 @@ class CancelApplyService(
     fun execute(feedId: UUID) {
         val user = userFacade.getCurrentUser()
         val feed = feedFacade.getByFeedId(feedId)
-        applyRepository.delete(Apply(user, feed))
+        applyRepository.deleteByUserAndFeed(user, feed)
     }
 }

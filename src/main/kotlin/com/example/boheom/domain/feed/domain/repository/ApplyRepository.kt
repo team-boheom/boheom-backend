@@ -11,4 +11,5 @@ interface ApplyRepository : JpaRepository<Apply, UUID> {
     fun countByFeed(feed: Feed): Int
     fun findByUser(user: User): List<Apply>
     fun findByFeed(feed: Feed): List<Apply>
+    fun deleteByUserAndFeed(user: User, feed: Feed)
 }
