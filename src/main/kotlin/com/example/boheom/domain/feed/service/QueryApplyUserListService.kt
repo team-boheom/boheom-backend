@@ -21,11 +21,6 @@ class QueryApplyUserListService(
         val user = userFacade.getCurrentUser()
         val feed = feedFacade.getByFeedId(feedId)
         val applyUser = applyRepository.findByFeed(feed).map { it.user }
-
-        if (user != feed.user) {
-            throw IncorrectUserException
-        }
-
         return QueryApplyUserListResponse(applyUser.map { UserElement(it.profile, it.nickname, it.accountId) })
     }
 }
