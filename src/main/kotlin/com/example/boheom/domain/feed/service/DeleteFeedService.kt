@@ -1,5 +1,6 @@
 package com.example.boheom.domain.feed.service
 
+import com.example.boheom.domain.feed.domain.repository.ApplyRepository
 import com.example.boheom.domain.feed.domain.repository.FeedRepository
 import com.example.boheom.domain.feed.domain.repository.FeedTagRepository
 import com.example.boheom.domain.feed.exception.IncorrectUserException
@@ -15,6 +16,7 @@ class DeleteFeedService(
     private val userFacade: UserFacade,
     private val feedRepository: FeedRepository,
     private val feedTagRepository: FeedTagRepository,
+    private val applyRepository: ApplyRepository,
 ) {
     @Transactional
     fun execute(feedId: UUID) {
@@ -23,6 +25,10 @@ class DeleteFeedService(
 
         if (user != feed.user) {
             throw IncorrectUserException
+        }
+
+        if (applyRepository.existsByFeed(feed)) {
+            applyRepository.deleteByFeed(feed)
         }
 
         feedTagRepository.deleteAllByFeed(feed)

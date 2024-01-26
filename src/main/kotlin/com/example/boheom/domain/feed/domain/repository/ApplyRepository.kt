@@ -12,4 +12,6 @@ interface ApplyRepository : JpaRepository<Apply, UUID> {
     fun findByUser(user: User): List<Apply>
     fun findByFeed(feed: Feed): List<Apply>
     fun deleteByUserAndFeed(user: User, feed: Feed)
+    fun existsByFeed(feed: Feed): Boolean
+    fun deleteByFeed(feed: Feed)
 }
